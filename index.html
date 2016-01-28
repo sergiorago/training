@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Your Moving Companion</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="main">
+
+    </div>
+
+    <script type="text/x-handlebars-template" id="page-template">
+        <form id="form-container" class="form-container">
+            <label for="street">Street: </label><input type="text" id="street" value="">
+            <label for="city">City: </label><input type="text" id="city" value="">
+            <button id="submit-btn">Submit</button>
+        </form>
+
+        <hr>
+
+        <h2 id="greeting" class="greeting">
+            {{#if city}}
+                So, You want to live at {{street}}, {{city}}
+            {{else}}
+                Where do you want to live?
+            {{/if}}
+        </h2>
+
+        <div id="wikis">
+        </div>
+
+        <div id="articles">
+        </div>
+        {{#if city}}
+        <img class="bgimg" src="{{getAddressImageUrl street city}}" />
+        {{/if}}
+
+    </script>
+    <script type="text/x-handlebars-template" id="wikis-template">
+        <div class="wikipedia-container">
+            <h3 id="wikipedia-header">Relevant Wikipedia Links</h3>
+            <ul id="wikipedia-links">
+                {{#if this}}
+                    {{#each this}}
+                        {{> wiki}}
+                    {{/each}}
+                {{else}}
+                    Type in an address above and find relevant Wikipedia articles here!
+                {{/if}}
+            </ul>
+        </div>
+    </script>
+    <script type="text/x-handlebars-template" id="wiki-template">
+        <li>
+            <a target="_blank" href="{{getWikiUrl this}}">{{this}}</a>
+        </li>
+    </script>
+    <script type="text/x-handlebars-template" id="articles-template">
+        <div class="nytimes-container">
+            <h3 id="nytimes-header">New York Times Articles</h3>
+            <ul id="nytimes-articles" class="article-list">
+                {{#if this}}
+                    {{#each this}}
+                        {{> article}}
+                    {{/each}}
+                {{else}}
+                    What's going on in your new city? Enter an address and hit submit and the NY Times will tell you here!
+                {{/if}}
+            </ul>
+        </div>
+    </script>
+    <script type="text/x-handlebars-template" id="article-template">
+        <li>
+            <a href="{{item.web_url}}">{{headline.main}}</a>
+            <p>{{snippet}}</p>
+		</li>
+    </script>
+    <script src="js/libs/jquery.min.js"></script>
+    <script src="js/libs/handlebars.min.js"></script>
+    <script src="js/helpers.js"></script>
+    <script src="js/NYTApi.js"></script>
+    <script src="js/WikiApi.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>
