@@ -7,17 +7,15 @@
 </head>
 <body>
     <div id="main">
-
+            test
     </div>
 
     <script type="text/x-handlebars-template" id="page-template">
-        <form id="form-container" class="form-container">
+        <div id="form-container" class="form-container">
             <label for="street">Street: </label><input type="text" id="street" value="">
             <label for="city">City: </label><input type="text" id="city" value="">
-            <button id="submit-btn">Submit</button>
-        </form>
-
-        <hr>
+            <input type="button" value="Submint" class="btnSubmit"/>
+        </div>
 
         <h2 id="greeting" class="greeting">
             {{#if city}}
@@ -32,6 +30,7 @@
 
         <div id="articles">
         </div>
+
         {{#if city}}
         <img class="bgimg" src="{{getAddressImageUrl street city}}" />
         {{/if}}
@@ -42,9 +41,7 @@
             <h3 id="wikipedia-header">Relevant Wikipedia Links</h3>
             <ul id="wikipedia-links">
                 {{#if this}}
-                    {{#each this}}
-                        {{> wiki}}
-                    {{/each}}
+
                 {{else}}
                     Type in an address above and find relevant Wikipedia articles here!
                 {{/if}}
@@ -53,7 +50,7 @@
     </script>
     <script type="text/x-handlebars-template" id="wiki-template">
         <li>
-            <a target="_blank" href="{{getWikiUrl this}}">{{this}}</a>
+            <a target="_blank" href="{{getWikiUrl name}}">{{name}}</a>
         </li>
     </script>
     <script type="text/x-handlebars-template" id="articles-template">
@@ -61,9 +58,7 @@
             <h3 id="nytimes-header">New York Times Articles</h3>
             <ul id="nytimes-articles" class="article-list">
                 {{#if this}}
-                    {{#each this}}
-                        {{> article}}
-                    {{/each}}
+
                 {{else}}
                     What's going on in your new city? Enter an address and hit submit and the NY Times will tell you here!
                 {{/if}}
@@ -72,15 +67,30 @@
     </script>
     <script type="text/x-handlebars-template" id="article-template">
         <li>
-            <a href="{{item.web_url}}">{{headline.main}}</a>
+            <a href="{{url}}">{{headline}}</a>
             <p>{{snippet}}</p>
 		</li>
     </script>
+
     <script src="js/libs/jquery.min.js"></script>
     <script src="js/libs/handlebars.min.js"></script>
+    <script src="js/libs/underscore.js"></script>
+    <script src="js/libs/backbone.js"></script>
+
+    <script src="js/views/location-view.js"></script>
+    <script src="js/views/wikis-view.js"></script>
+    <script src="js/views/wiki-view.js"></script>
+    <script src="js/views/articles-view.js"></script>
+    <script src="js/views/article-view.js"></script>
+
+    <script src="js/models/location.js"></script>
+    <script src="js/models/wiki.js"></script>
+    <script src="js/models/article.js"></script>
+
+    <script src="js/collections/wikis.js"></script>
+    <script src="js/collections/articles.js"></script>
+
     <script src="js/helpers.js"></script>
-    <script src="js/NYTApi.js"></script>
-    <script src="js/WikiApi.js"></script>
-    <script src="js/script.js"></script>
+    <script src="js/app.js"></script>
 </body>
 </html>

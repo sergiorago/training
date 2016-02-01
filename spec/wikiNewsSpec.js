@@ -14,32 +14,52 @@ describe("WikiNews Helper", function() {
 });
 
 describe("Wiki Api", function() {
-    var wikiApi = new WikiApi();
+    app.wikis = new app.Wikis();
+    var loadedWikis = false;
 
     beforeEach(function(done) {
-        var city = "Bogota";
-        wikiApi.loadWikis(city, function() {
-            done();
+
+        app.wikis.fetch({
+            data: {
+                "search": "Bogota",
+                "format": "json",
+                "action":"opensearch"
+            },
+            async: false,
+            success: function() {
+                loadedWikis = true;
+                done();
+            }
         });
     });
 
     it("Should be able to load wiki information", function(done) {
-        expect(wikiApi.wikisLoaded).toBe(true);
+        expect(loadedWikis).toBe(true);
         done();
     });
 });
 
 describe("NYT Api", function() {
-    var nytApi = new NYTApi();
+    app.articles = new app.Articles();
+    var articlesLoaded = false;
+
     beforeEach(function(done) {
-        var city = "Bogota";
-        nytApi.loadArticles(city, function() {
-            done();
+
+        app.articles.fetch({
+            data: {
+                "q": "Bogota",
+                "sort": "newest"
+            },
+            async: false,
+            success: function() {
+                articlesLoaded = true;
+                done();
+            }
         });
     });
 
-    it("Should be able to load articles information", function(done) {        
-        expect(nytApi.articlesLoaded).toBe(true);
+    it("Should be able to load articles information", function(done) {
+        expect(articlesLoaded).toBe(true);
         done();
     });
 });
