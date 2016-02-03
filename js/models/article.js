@@ -4,7 +4,7 @@ app.Article = Backbone.Model.extend({
     // and ensure that each todo created has `title` and `completed` keys.
     defaults: {
         headline: "",
-        url: "",
+        url: "#",
         snippet: ""
     }
 });

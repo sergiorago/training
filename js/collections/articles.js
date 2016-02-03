@@ -29,6 +29,7 @@ var app = app || {};
 
 			return lst;
         },
+		
         sync: function(method, collection, options) {
             var that = this;
 
