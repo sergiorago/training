@@ -5,8 +5,8 @@ $(function () {
 
 	app.location = new app.Location();
 	var locationView = new app.LocationView({
-		model: app.location,
-		el: $('#main')
+		"model": app.location,
+		"el": $('#main')
 	});
 
 	locationView.render();

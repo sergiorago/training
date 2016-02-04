@@ -1,10 +1,9 @@
-// Our basic **Todo** model has `title`, `order`, and `completed` attributes.
+var app = app || {};
+
 app.Article = Backbone.Model.extend({
-    // Default attributes for the todo
-    // and ensure that each todo created has `title` and `completed` keys.
-    defaults: {
-        headline: "",
-        url: "#",
-        snippet: ""
+    "defaults": {
+        "headline": "",
+        "url": "#",
+        "snippet": ""
     }
 });
